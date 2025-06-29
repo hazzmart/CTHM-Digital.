@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTHM Digital - AI Business Assistant for New Zealand Small Businesses</title>
+    <meta name="description" content="The AI business assistant built from Kiwis for Kiwis. Get instant marketing and business insights, join our community of 500+ NZ businesses, and save time with affordable AI support.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background: #0f172a;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
+        .header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            background: rgba(15, 23, 42, 0.98);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #10b981;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: #10b981;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: #10b981;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 100px;
+            text-align: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23334155" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            color: #ffffff;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin: 4rem 0;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .stat {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            color: #10b981;
+            transition: color 0.3s ease;
+        }
+
+        .stat:hover .stat-number {
+            color: #34d399;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 100px 0;
+            background: #1e293b;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .content-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .content-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .benefits-list li {
+            padding: 0.75rem 0;
+            position: relative;
+            padding-left: 2rem;
+            color: #cbd5e1;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .benefits-list li:hover {
+            color: #ffffff;
+            transform: translateX(5px);
+        }
+
+        .benefits-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .benefits-list li:hover::before {
+            transform: scale(1.2);
+        }
+
+        /* Lead Form */
+        .lead-form {
+            background: #334155;
+            padding: 3rem;
+            border-radius: 12px;
+            color: #ffffff;
+            border: 1px solid #475569;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .lead-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .lead-form:hover::before {
+            opacity: 1;
+        }
+
+        .form-title {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .form-group:hover {
+            transform: translateY(-2px);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #e2e8f0;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #1e293b;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .form-group input::placeholder {
+            color: #64748b;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #10b981;
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        .guarantee {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+        }
+
+        /* Social Proof */
+        .social-proof {
+            background: #0f172a;
+            padding: 100px 0;
+        }
+
+        .testimonials {
+            text-align: center;
+        }
+
+        .testimonials h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial {
+            background: #1e293b;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #10b981;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial:hover::before {
+            transform: scaleY(1);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.95rem;
+        }
+
+        .testimonial-company {
+            color: #10b981;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Community Section */
+        .community-section {
+            background: #1e293b;
+            color: #ffffff;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .community-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .community-content p {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .community-stat {
+            background: #334155;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #475569;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .community-stat::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .community-stat:hover::before {
+            opacity: 1;
+        }
+
+        .community-stat:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .community-stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            color: #10b981;
+            transition: color 0.3s ease;
+        }
+
+        .community-stat:hover .community-stat-number {
+            color: #34d399;
+        }
+
+        .community-stat span:last-child {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 0;
+            background: #0f172a;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #cbd5e1;
+            line-height: 1.7;
+        }
+
+        .about-features {
+            background: #1e293b;
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+        }
+
+        .about-features:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-features h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            background: #0f172a;
+            padding: 100px 0;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .blog-card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #334155;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #10b981;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #334155 0%, #475569 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .blog-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="blog-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M 20 0 L 0 0 0 20" fill="none" stroke="%23475569" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23blog-grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .blog-category {
+            background: #10b981;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
+        }
+
+        .blog-card:hover .blog-category {
+            background: #059669;
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover .blog-content h3 {
+            color: #10b981;
+        }
+
+        .blog-content p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .blog-date {
+            font-weight: 500;
+        }
+
+        .blog-read-time {
+            background: #334155;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .read-more-btn {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .read-more-btn::after {
+            content: '→';
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            color: #34d399;
+        }
+
+        .read-more-btn:hover::after {
+            transform: translateX(4px);
+        }
+
+        .blog-cta {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid #334155;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .content-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .lead-form {
+                padding: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .blog-card {
+                margin-bottom: 1rem;
+            }
+
+            .blog-content {
+                padding: 1.5rem;
+            }
+
+            .blog-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .blog-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .fade-in-left {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        .fade-in-right {
+            animation: fadeInRight 0.8s ease-out;
+        }
+
+        .scale-in {
+            animation: scaleIn 0.8s ease-out;
+        }
+
+        .slide-in-top {
+            animation: slideInFromTop 0.8s ease-out;
+        }
+
+        /* Section Headers */
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: #cbd5e1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Logo Grid */
+        .logo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            opacity: 0.6;
+        }
+
+        .logo-item {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+
+        /* Floating animation for hero elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Pulse animation for CTAs */
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#header" class="logo"><img src="cthm-logo.png" alt="CTHM Digital Logo" style="height:48px; vertical-align:middle; display:inline-block;"></a>
+                <nav class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#social-proof">Community</a>
+                    <a href="#blog">Blog</a>
+                    <a href="#form" class="cta-button">Start Free Trial</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="matrix-overlay"></div>
+        <div class="container">
+            <h1 class="fade-in-up hero-title-mask">AI business assistant built for New Zealand small businesses</h1>
+            <p class="subtitle fade-in-up hero-title-mask">Join 500+ Kiwi businesses who get instant marketing insights, business strategy, and community support - all for less than an Uber Eats delivery</p>
+            
+            <div class="hero-stats fade-in-up">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Kiwi Businesses</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">30s</span>
+                    <span class="stat-label">Average Response</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$30</span>
+                    <span class="stat-label">Per day</span>
+                </div>
+            </div>
+
+            <a href="#form" class="cta-button fade-in-up">Start Your Free Trial</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>Why Kiwi businesses choose CTHM Digital</h2>
+                    <p>We know running a small business in New Zealand isn't easy. That's why we built an AI assistant that understands the local market, speaks your language, and gives you the support you need to succeed.</p>
+                    
+                    <ul class="benefits-list">
+                        <li><strong>Built for Kiwis:</strong> Trained on NZ business data, not generic global content</li>
+                        <li><strong>Instant Support:</strong> Get marketing ideas, business insights, and strategy in seconds</li>
+                        <li><strong>Community Network:</strong> Connect with other NZ businesses facing similar challenges</li>
+                        <li><strong>Affordable:</strong> Just $30/daily - designed for sole traders and small businesses</li>
+                        <li><strong>Always Available:</strong> 24/7 support via web or mobile app</li>
+                    </ul>
+
+                    <p><strong>You're not alone in this journey.</strong> Join hundreds of other Kiwi business owners who've found their perfect business assistant.</p>
+                </div>
+
+                <!-- Lead Capture Form -->
+                <div class="lead-form" id="form">
+                    <h3 class="form-title">Start Your Free 7-Day Trial</h3>
+                    <p class="form-subtitle">No credit card required • Cancel anytime</p>
+                    <form id="leadForm" aria-labelledby="form-title">
+                        <div class="form-group">
+                            <label for="name">Full Name <span aria-hidden="true" style="color:#10b981">*</span></label>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-required="true" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address <span aria-hidden="true" style="color:#10b981">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required aria-required="true" autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+64" autocomplete="tel">
+                        </div>
+                        <div class="form-group">
+                            <label for="business">Business Type</label>
+                            <select id="business" name="business">
+                                <option value="">Select your business type</option>
+                                <option value="real-estate">Real Estate</option>
+                                <option value="construction">Construction</option>
+                                <option value="agriculture">Agriculture/Farming</option>
+                                <option value="financial">Financial Services</option>
+                                <option value="technology">Technology</option>
+                                <option value="retail">Retail</option>
+                                <option value="service">Service Business</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Years in Business</label>
+                            <select id="experience" name="experience">
+                                <option value="">Select experience level</option>
+                                <option value="starting">Just starting out</option>
+                                <option value="1-2">1-2 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="5-10">5-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn" aria-label="Start My Free Trial">
+                            Start My Free Trial
+                        </button>
+                    </form>
+                    <p class="guarantee">
+                        Your data stays in New Zealand • No lock-in contracts
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <section id="social-proof" class="social-proof">
+        <div class="container">
+            <div class="testimonials">
+                <div class="section-header">
+                    <h2>What Kiwi business owners say</h2>
+                    <p>Join hundreds of satisfied customers who've transformed their businesses with CTHM Digital</p>
+                </div>
+                
+                <div class="testimonial-grid">
+                    <div class="testimonial">
+                        <p class="testimonial-text">"Being a sole trader was overwhelming until I found CTHM. Now I have instant access to marketing ideas and business insights. It's like having a business partner who never sleeps!"</p>
+                        <div class="testimonial-author">Karen Tracy</div>
+                        <div class="testimonial-company">Real Estate Agent, Auckland</div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">"As a builder, I don't have time for marketing. CTHM helps me create professional quotes and social media content in seconds. It's built for Kiwi businesses like mine."</p>
+                        <div class="testimonial-author">Jason Rogers</div>
+                        <div class="testimonial-company">Builder, Mt Wellington</div>
+                    </div>
+                    
+                    <div class="testimonial">
+                        <p class="testimonial-text">"The community aspect is brilliant. I've connected with other small business owners facing the same challenges. Plus, the AI actually understands the NZ market!"</p>
+                        <div class="testimonial-author">Lisa Rodriguez</div>
+                        <div class="testimonial-company">Creative Agency Owner, Wellington</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="community-section">
+        <div class="container">
+            <div class="community-content">
+                <h2>Join our growing Kiwi business community</h2>
+                <p>Connect with hundreds of New Zealand small business owners who understand your challenges and share your goals.</p>
+                
+                <div class="community-stats">
+                    <div class="community-stat">
+                        <span class="community-stat-number">500+</span>
+                        <span>Active Kiwi Businesses</span>
+                    </div>
+                    <div class="community-stat">
+                        <span class="community-stat-number">15</span>
+                        <span>Industries Represented</span>
+                    </div>
+                    <div class="community-stat">
+                        <span class="community-stat-number">24/7</span>
+                        <span>AI Support Available</span>
+                    </div>
+                    <div class="community-stat">
+                        <span class="community-stat-number">97%</span>
+                        <span>Satisfaction Rate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>About CTHM Digital</h2>
+                    <p>We're a New Zealand company that understands the unique challenges facing Kiwi small businesses. With 97% of NZ businesses being small businesses, we knew there was a need for better support.</p>
+                    
+                    <p>Our AI assistant is trained specifically on New Zealand business data and understands the local market, regulations, and business environment. We're not another generic global tool - we're built by Kiwis, for Kiwis.</p>
+                    
+                    <p><strong>Our Mission:</strong> To help New Zealand small businesses succeed by providing affordable, accessible, and locally-relevant AI assistance that actually works.</p>
+                </div>
+                
+                <div class="about-features">
+                    <h3>Why we're different</h3>
+                    <ul class="benefits-list">
+                        <li><strong>Local Knowledge:</strong> Trained on NZ business data and market conditions</li>
+                        <li><strong>Community Focus:</strong> Connect with other Kiwi business owners</li>
+                        <li><strong>Affordable Pricing:</strong> Designed for small business budgets</li>
+                        <li><strong>Kiwi Support:</strong> Local customer service and support</li>
+                        <li><strong>Data Privacy:</strong> Your data stays in New Zealand</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Insights for Kiwi Businesses</h2>
+                <p>Stay ahead with our latest articles on AI, marketing, and business growth strategies tailored for New Zealand small businesses</p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">AI Marketing</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>How AI is Revolutionizing Small Business Marketing in New Zealand</h3>
+                        <p>Discover how Kiwi businesses are using AI to create personalized marketing campaigns, generate content, and connect with their local audience more effectively than ever before.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">December 15, 2024</span>
+                            <span class="blog-read-time">5 min read</span>
+                        </div>
+                        <a href="https://24261989.hs-sites.com/blog/how-ai-is-revolutionizing-small-business-marketing-in-new-zealand" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">Business Strategy</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>5 Essential Digital Tools Every NZ Small Business Needs in 2024</h3>
+                        <p>From AI assistants to local SEO tools, we've compiled the must-have digital solutions that are helping Kiwi businesses compete in today's digital marketplace.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">December 12, 2024</span>
+                            <span class="blog-read-time">7 min read</span>
+                        </div>
+                        <a href="https://24261989.hs-sites.com/blog/5-essential-digital-tools-every-nz-small-business-needs-in-2024#" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                    </div>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-image">
+                        <div class="blog-category">Community</div>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Building a Strong Business Network: Lessons from 500+ Kiwi Entrepreneurs</h3>
+                        <p>Learn from the collective wisdom of our growing community of New Zealand business owners and discover how networking and collaboration are driving success across industries.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">December 10, 2024</span>
+                            <span class="blog-read-time">6 min read</span>
+                        </div>
+                        <a href="https://24261989.hs-sites.com/blog/building-a-strong-business-network-lessons-from-500-kiwi-entrepreneurs" class="read-more-btn" target="_blank" rel="noopener noreferrer">Read More</a>
+                    </div>
+                </article>
+            </div>
+            
+            <div class="blog-cta">
+                <a href="#" class="cta-button">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 CTHM Digital. Built in New Zealand, for New Zealand businesses.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Special handling for logo click to always scroll to top
+        document.querySelector('.logo').addEventListener('click', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Enhanced scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Add staggered animations for grid items
+                    if (entry.target.classList.contains('testimonial')) {
+                        const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 0.2;
+                        entry.target.style.animationDelay = `${delay}s`;
+                        entry.target.classList.add('fade-in-up');
+                    }
+                    
+                    if (entry.target.classList.contains('community-stat')) {
+                        const delay = Array.from(entry.target.parentNode.children).indexOf(entry.target) * 0.1;
+                        entry.target.style.animationDelay = `${delay}s`;
+                        entry.target.classList.add('scale-in');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.content-text, .lead-form, .testimonial, .community-stat, .about-text, .about-features, .blog-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add floating animation to hero elements
+        document.querySelectorAll('.hero h1, .hero .subtitle').forEach(el => {
+            el.classList.add('floating');
+        });
+
+        // Add pulse animation to CTA buttons
+        document.querySelectorAll('.cta-button').forEach(el => {
+            el.classList.add('pulse');
+        });
+
+        // Parallax effect for hero background
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+
+        // Animate numbers on scroll
+        function animateNumbers() {
+            const numbers = document.querySelectorAll('.stat-number, .community-stat-number');
+            numbers.forEach(number => {
+                const finalNumber = number.textContent;
+                // Special case for 24/7
+                if (finalNumber === '24/7') {
+                    number.textContent = '24/7';
+                    return;
+                }
+                const isPercentage = finalNumber.includes('%');
+                const isPlus = finalNumber.includes('+');
+                const isTime = finalNumber.includes('s');
+                const isDollar = finalNumber.includes('$');
+                
+                let numericValue = finalNumber.replace(/[^0-9]/g, '');
+                let startValue = 0;
+                let duration = 2000;
+                let startTime = null;
+                
+                function animate(currentTime) {
+                    if (!startTime) startTime = currentTime;
+                    const progress = Math.min((currentTime - startTime) / duration, 1);
+                    const currentValue = Math.floor(startValue + (numericValue - startValue) * progress);
+                    
+                    let displayValue = currentValue;
+                    if (isPercentage) displayValue += '%';
+                    if (isPlus) displayValue += '+';
+                    if (isTime) displayValue += 's';
+                    if (isDollar) displayValue = '$' + displayValue;
+                    
+                    number.textContent = displayValue;
+                    
+                    if (progress < 1) {
+                        requestAnimationFrame(animate);
+                    }
+                }
+                
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            requestAnimationFrame(animate);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                });
+                
+                observer.observe(number);
+            });
+        }
+
+        // Initialize number animations
+        animateNumbers();
+
+        // Add hover effects to form inputs
+        document.querySelectorAll('.form-group input, .form-group select').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'translateY(-2px)';
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            
+            type();
+        }
+
+        // Initialize typing effect when page loads
+        window.addEventListener('load', function() {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            setTimeout(() => {
+                typeWriter(heroTitle, originalText, 50);
+            }, 500);
+        });
+
+        // Add ripple effect to buttons
+        document.querySelectorAll('.cta-button, .submit-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+        // Add CSS for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+                pointer-events: none;
+            }
+            
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add scroll progress indicator
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        `;
+        document.body.appendChild(progressBar);
+
+        window.addEventListener('scroll', function() {
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        });
+
+        // Add particle effect to hero section
+        function createParticles() {
+            const canvas = document.createElement('canvas');
+            canvas.id = 'particles-canvas';
+            canvas.style.cssText = `
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 1;
+            `;
+            
+            const hero = document.querySelector('.hero');
+            hero.style.position = 'relative';
+            hero.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = hero.offsetHeight;
+            
+            const particles = [];
+            const particleCount = 50;
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.vx = (Math.random() - 0.5) * 0.5;
+                    this.vy = (Math.random() - 0.5) * 0.5;
+                    this.size = Math.random() * 2 + 1;
+                    this.opacity = Math.random() * 0.6 + 0.4;
+                }
+                
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    
+                    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(34, 197, 94, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+            
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                particles.forEach(particle => {
+                    particle.update();
+                    particle.draw();
+                });
+                
+                // Draw connections between nearby particles
+                particles.forEach((particle, i) => {
+                    particles.slice(i + 1).forEach(otherParticle => {
+                        const dx = particle.x - otherParticle.x;
+                        const dy = particle.y - otherParticle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 100) {
+                            ctx.beginPath();
+                            ctx.moveTo(particle.x, particle.y);
+                            ctx.lineTo(otherParticle.x, otherParticle.y);
+                            ctx.strokeStyle = `rgba(34, 197, 94, ${0.12 * (1 - distance / 100)})`;
+                            ctx.lineWidth = 1;
+                            ctx.stroke();
+                        }
+                    });
+                });
+                
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = hero.offsetHeight;
+            });
+        }
+
+        // Initialize particles
+        createParticles();
+    </script>
+</body>
+</html>
